@@ -1,0 +1,230 @@
+/* ********global styles********** */
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+:root {
+  scroll-behavior: smooth;
+  --blue: #1cbbb4;
+  --bg_black: #1a2e35;
+  --red: #ff4f5a;
+  --button_color: #252525;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style: none;
+}
+
+.capitilaze {
+  text-transform: capitalize;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.red {
+  color: var(--red);
+}
+
+/*? *****************************start nav******************** */
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_container .left_container {
+  display: flex;
+  padding: 15px;
+  background: var(--bg_black);
+  width: 50%;
+  gap: 15%;
+  font-size: 20px;
+}
+
+.nav_container .left span {
+  display: flex;
+  color: white;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.nav_container .left span img {
+  border-style: none;
+  height: 46px;
+}
+
+.nav_container .left_container ul {
+  gap: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_container .left_container .left {
+  display: flex;
+  align-items: center;
+}
+
+.nav_container .left_container .right ul {
+  display: flex;
+  gap: 30%;
+}
+
+.nav_container .right_container {
+  width: 50%;
+  background: var(--blue);
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 20px;
+  color: white;
+  padding: 15px;
+}
+
+.nav_container .right_container .right {
+  display: flex;
+  gap: 80px;
+}
+
+@media screen and (max-width: 1200px) {
+  .nav_container .left_container .right ul {
+      flex-direction: column;
+      gap: 150px;
+  }
+}
+
+/*? *********************end nav*********************** */
+
+/* cards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  padding: 15px;
+  text-align: left;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.card a {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.card a:hover {
+  background-color: #0056b3;
+}
+
+/* Modal styling */
+#contact-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .modal-content {
+      width: 95%;
+  }
+
+  .card {
+      max-width: 100%;
+  }
+}

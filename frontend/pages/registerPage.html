@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+    <div class="container">
+        <h1>إنشاء حساب جديد</h1>
+        <form id="registrationForm">
+            <!-- اختيار نوع الحساب -->
+            <label for="accountType">نوع الحساب:</label>
+            <select id="accountType" name="accountType" required>
+                <option value="">اختر نوع الحساب</option>
+                <option value="Admin">مدير النظام</option>
+                <option value="Freelancer">مستقل</option>
+                <option value="Company">شركة</option>
+            </select>
+
+            <!-- الحقول العامة -->
+            <div id="commonFields">
+                <label for="fullName">الاسم الكامل:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل" required>
+
+                <label for="phoneNumber">رقم الهاتف:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="أدخل رقم الهاتف">
+
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" name="email" placeholder="أدخل البريد الإلكتروني" required>
+
+                <label for="password">كلمة المرور:</label>
+                <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+
+                <label for="image">رابط الصورة:</label>
+                <input type="url" id="image" name="image" placeholder="أدخل رابط الصورة">
+            </div>
+
+            <!-- الحقول الإضافية للمستقل -->
+            <div id="freelancerFields" style="display: none;">
+                <label for="theJob">المسمى الوظيفي:</label>
+                <input type="text" id="theJob" name="theJob" placeholder="أدخل المسمى الوظيفي">
+
+                <label for="pdf">رابط ملف PDF:</label>
+                <input type="url" id="pdf" name="pdf" placeholder="أدخل رابط ملف PDF">
+            </div>
+
+            <!-- الحقول الإضافية للشركة -->
+            <div id="companyFields" style="display: none;">
+                <label for="jobDescription">وصف الوظيفة:</label>
+                <textarea id="jobDescription" name="jobDescription" placeholder="أدخل وصف الوظيفة"></textarea>
+
+                <label for="communicationLink">رابط للتواصل:</label>
+                <input type="url" id="communicationLink" name="communicationLink" placeholder="أدخل رابط التواصل">
+            </div>
+
+            <button type="submit">إنشاء الحساب</button>
+        </form>
+    </div>
+
+    <script>
+        const accountTypeSelect = document.getElementById("accountType");
+        const freelancerFields = document.getElementById("freelancerFields");
+        const companyFields = document.getElementById("companyFields");
+
+        // إظهار وإخفاء الحقول بناءً على نوع الحساب
+        accountTypeSelect.addEventListener("change", () => {
+            const selectedType = accountTypeSelect.value;
+
+            // إعادة تعيين جميع الحقول الإضافية
+            freelancerFields.style.display = "none";
+            companyFields.style.display = "none";
+
+            // عرض الحقول المناسبة بناءً على نوع الحساب
+            if (selectedType === "Freelancer") {
+                freelancerFields.style.display = "block";
+            } else if (selectedType === "Company") {
+                companyFields.style.display = "block";
+            }
+        });
+
+        // إرسال البيانات إلى الخادم
+        document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById("fullName").value,
+                phoneNumber: document.getElementById("phoneNumber").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                accountType: document.getElementById("accountType").value,
+                image: document.getElementById("image").value || null,
+                theJob: document.getElementById("theJob")?.value || null,
+                pdf: document.getElementById("pdf")?.value || null,
+                jobDescription: document.getElementById("jobDescription")?.value || null,
+                communicationLink: document.getElementById("communicationLink")?.value || null,
+            };
+
+            try {
+                const response = await fetch("http://localhost:9000/api/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+            Swal.fire(" تم انشاء الحساب الرجاء الانتظار حتى يتم قبول طلبك", result.message, "success").then(() => {
+                window.location.href = "./loginPage.html";
+            });
+        } else {
+            Swal.fire("خطأ!", result.message, "error");
+        }
+            } catch (error) {
+                Swal.fire("خطأ!", "حدث خطأ أثناء الاتصال بالخادم", "error");
+            }
+        });
+    </script>
+</body>
+</html>

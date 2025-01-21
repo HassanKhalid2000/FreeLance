@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/jobs.css">
+    <title>Jobs</title>
+</head>
+<body>
+  <!-- ******************start nav************** -->
+  <nav class="nav_container">
+    <div class="left_container">
+        <div class="left">
+            <span>
+                <img src="../images/logo.png" alt="">
+            </span>
+            <span>
+                FreeLancer
+            </span>
+        </div>
+        <div class="right capitilaze">
+            <ul class="capitilaze">
+                <li>
+                    <a href="../index.html">home</a>
+                </li>
+                <li>
+                    <a href="../pages/about.html">about</a>
+                </li>
+                <li>
+                    <a href="../pages/category.html">category</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </div>
+    <div class="right_container">
+        
+        <div class="right">
+            <span><a href="../pages/work.html">Work</a></span>
+            <span><a href="#">Jobs</a></span>
+            <span><a href="../pages/HireFreelancer.html">Hire FreeLancer</a></span>
+            <span><a href="#" id="logoutLink">Logout</a></span>
+
+            </i>
+        </div>
+    </div>
+    </div>
+
+</nav>
+<!-- ******************end nav************** -->
+
+    <main class="companies-container" id="companies-container">
+        <!-- Companies will be dynamically loaded here -->
+        <div id="apply-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>تقديم على الوظيفة</h2>
+                <form id="applyForm">
+                    <label for="message">رسالتك:</label>
+                    <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+                    <button type="submit">إرسال</button>
+                </form>
+            </div>
+        </div>
+        
+    </main>
+
+
+    <script src="../JS/jobs.js"></script>
+    
+</body>
+</html>
